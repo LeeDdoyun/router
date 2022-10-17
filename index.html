@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue-router 적용</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>SPA(Single Page Application)</h2>
+        <p>페이지의 로딩이 없이 즉각적으로 요청한 페이지를 화면상아 보여준다.</p>
+
+        <router-view></router-view>
+
+        <hr>
+
+        <p>라우터의 사용</p>
+        <div>
+            <router-link to="/">Main Page</router-link>
+            <router-link to="/about">About Page</router-link>
+            <router-link to="/project">Project Page</router-link>
+            <router-link to="/portfolio">Portfolio Page</router-link>
+            <router-link to="/contact">Contact Page</router-link>
+        </div>
+    </div>
+
+    <script>
+        //라우터에 등록할 컴포넌트의 정의
+        const tMain = {
+            template : `<h2>메인 페이지입니다.<h2>`
+        }
+        const tAbout = {
+            template : `<h2>ABOUT 페이지입니다.<h2>`
+        }
+        const tProject = {
+            template : `<h2>PROJECT 페이지입니다.<h2>`
+        }
+        const tPortfolio = {
+            template : `<h2>PORTFOLIO 페이지입니다.<h2>`
+        }
+        const tContact = {
+            template : `<h2>CONTACT 페이지입니다.<h2>`
+        }
+
+        //이동할 주소명과 사용할 컴포넌트를 등록하여 라우팅(약속된 곳으로 보낸다)을 정의
+        const rtRoutes = [
+            {path : "/", component : tMain},
+            {path : "/about", component : tAbout},
+            {path : "/project", component : tProject},
+            {path : "/portfolio", component : tPortfolio},
+            {path : "/contact", component : tContact},
+        ]
+        //라우터 인스턴스를 생성하고 routes 옵션에 전달
+        //router1의 객체 변수는 라우터의 인스턴스이면서 Vue 생성시 옵션으로 사용된다.
+        const router1 = new VueRouter({
+            routes : rtRoutes
+        })
+        new Vue({
+            el : "#app",
+            router : router1
+        });
+
+    </script>
+</body>
+</html>
